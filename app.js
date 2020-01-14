@@ -50,9 +50,20 @@ app.get('/cat', (request, response, next) =>
 // 1.Here, we are using a new method that is part of the response object: sendFile().
 // The sendFile() method allows us to respond with the contents of a file.
 // It’s an alternative to send() which only allows us to send a string directly.
+
 // 2.__dirname (two underscores) refers to the folder in which our app.js is located.
 // Try to console.log(__dirname) so you can see its value.
 // If we don’t specify the complete path to the HTML file our sendFile() will fail.
+
+//3. Don’t get confused between the name of the HTML file and the URL.
+// The URL is determined by the route: app.get('/cat', ...) means that we need to go to localhost:3000/cat.
+// Through the response we connect the route’s URL to the HTML file: response.sendFile(__dirname + 'views/cat-page.html');.
+//Making these connections is what backend is all about.
+
+//4.Couldn’t we have placed the HTML files in public/
+// and referred to them directly like localhost:3000/cat-page.html?
+//Yes!
+// But we will see later how this structure of having the route refer to its HTML will be useful.
 
 // ... the previously added code
 // Server Started
