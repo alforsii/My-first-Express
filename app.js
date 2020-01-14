@@ -1,4 +1,6 @@
 const express = require('express');
+const path = require('path');
+const PORT = process.env.PORT || 3000;
 
 // We create our own server named app
 // Express server will be handling requests and responses
@@ -34,18 +36,23 @@ app.use(express.static('public'));
 //     `);
 // });
 
-//2. Better and cleaner way of writing our code
-// we separated our html files from js, and put them inside view folder
-// ...
-// our first Route:
-app.get('/home', (request, response, next) =>
-  response.sendFile(__dirname + '/views/home-page.html')
-);
+// //2. Better and cleaner way of writing our code
+// // we separated our html files from js, and put them inside view folder
+// // ...
+// // our first Route:
+// app.get('/home', (request, response, next) =>
+//   response.sendFile(__dirname + '/views/home-page.html')
+// );
 
-// cat route:
-app.get('/cat', (request, response, next) =>
-  response.sendFile(__dirname + '/views/cat-page.html')
-);
+// // cat route:
+// app.get('/cat', (request, response, next) =>
+//   response.sendFile(__dirname + '/views/cat-page.html')
+// );
+// //3.
+// // to get the page we need, type http://localhost:3000/home-page.html
+// // to get the page we need,type http://localhost:3000/cat-page.html
+app.use(express.static(path.join(__dirname, 'public')));
+
 // ...
 // 1.Here, we are using a new method that is part of the response object: sendFile().
 // The sendFile() method allows us to respond with the contents of a file.
@@ -67,4 +74,5 @@ app.get('/cat', (request, response, next) =>
 
 // ... the previously added code
 // Server Started
-app.listen(3000, () => console.log('My first app listening on port 3000! '));
+// app.listen(3000, () => console.log('My first app listening on port 3000! '));
+app.listen(PORT, () => console.log(`My first app listening on port ${PORT}!`));
